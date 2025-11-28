@@ -8,6 +8,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      DEPLOY_TO_K8S: ${{ secrets.DEPLOY_TO_K8S }}
 
     steps:
     - name: Checkout repository
@@ -36,13 +38,13 @@ jobs:
         docker push suyashsaraswat2003/frontend:latest
 
     - name: Set up kubectl
-      if: ${{ secrets.KUBE_CONFIG }}
+      if: ${{ env.DEPLOY_TO_K8S == 'true' }}
       uses: azure/setup-kubectl@v3
       with:
         version: 'latest'
 
     - name: Deploy to Kubernetes
-      if: ${{ secrets.KUBE_CONFIG }}
+      if: ${{ env.DEPLOY_TO_K8S == 'true' }}
       run: |
         echo "${{ secrets.KUBE_CONFIG }}" | base64 --decode > kubeconfig.yaml
         export KUBECONFIG=kubeconfig.yaml
@@ -54,7 +56,7 @@ jobs:
         kubectl rollout status deployment/frontend-deployment
 
     - name: Run Docker containers locally
-      if: ${{ !secrets.KUBE_CONFIG }}
+      if: ${{ env.DEPLOY_TO_K8S != 'true' }}
       run: |
         docker network create library-net || true
         docker run -d --name book-service --network library-net suyashsaraswat2003/book-service:latest
