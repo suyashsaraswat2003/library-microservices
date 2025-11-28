@@ -23,26 +23,26 @@ jobs:
     - name: Log in to Docker Hub
       uses: docker/login-action@v3
       with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     # 4️⃣ Build and push Docker images
     - name: Build & Push Docker Images
       run: |
-        docker build -t yourdockerhub/book-service:latest ./services/book-service
-        docker push yourdockerhub/book-service:latest
+        docker build -t suyashsaraswat2003/book-service:latest ./services/book-service
+        docker push suyashsaraswat2003/book-service:latest
 
-        docker build -t yourdockerhub/user-service:latest ./services/user-service
-        docker push yourdockerhub/user-service:latest
+        docker build -t suyashsaraswat2003/user-service:latest ./services/user-service
+        docker push suyashsaraswat2003/user-service:latest
 
-        docker build -t yourdockerhub/borrow-service:latest ./services/borrow-service
-        docker push yourdockerhub/borrow-service:latest
+        docker build -t suyashsaraswat2003/borrow-service:latest ./services/borrow-service
+        docker push suyashsaraswat2003/borrow-service:latest
 
-        docker build -t yourdockerhub/catalog-service:latest ./services/catalog-service
-        docker push yourdockerhub/catalog-service:latest
+        docker build -t suyashsaraswat2003/catalog-service:latest ./services/catalog-service
+        docker push suyashsaraswat2003/catalog-service:latest
 
-        docker build -t yourdockerhub/frontend:latest ./frontend
-        docker push yourdockerhub/frontend:latest
+        docker build -t suyashsaraswat2003/frontend:latest ./frontend
+        docker push suyashsaraswat2003/frontend:latest
 
     # 5️⃣ Set up kubectl to deploy to Kubernetes
     - name: Set up kubectl
