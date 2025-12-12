@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Library Admin Panel</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Library Management Admin</h1>
+
+    <!-- User Section -->
+    <section>
+        <h2>Add User</h2>
+        <input type="number" id="user-id" placeholder="User ID">
+        <input type="text" id="user-name" placeholder="User Name">
+        <button onclick="addUser()">Add User</button>
+        <button onclick="listUsers()">Refresh Users</button>
+
+        <h3>Delete User</h3>
+        <input type="number" id="delete-user-id" placeholder="User ID to delete">
+        <button onclick="deleteUser()">Delete User</button>
+
+        <ul id="user-list"></ul>
+    </section>
+
+    <!-- Book Section -->
+    <section>
+        <h2>Add Book</h2>
+        <input type="number" id="book-id" placeholder="Book ID">
+        <input type="text" id="book-title" placeholder="Title">
+        <input type="text" id="book-author" placeholder="Author">
+        <input type="text" id="book-genre" placeholder="Genre">
+        <button onclick="addBook()">Add Book</button>
+
+        <h3>Delete Book</h3>
+        <input type="number" id="delete-book-id" placeholder="Book ID to delete">
+        <button onclick="deleteBook()">Delete Book</button>
+    </section>
+
+    <!-- Books List Section -->
+    <section>
+        <h2>Books</h2>
+        <button onclick="listBooks()">Refresh Books</button>
+        <ul id="book-list"></ul>
+    </section>
+
+    <!-- Borrow / Return Section -->
+    <section>
+        <h2>Borrow / Return Book</h2>
+        <input type="number" id="borrow-user-id" placeholder="User ID">
+        <input type="number" id="borrow-book-id" placeholder="Book ID">
+        <button onclick="borrowBook()">Borrow</button>
+        <button onclick="returnBook()">Return</button>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
